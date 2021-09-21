@@ -18,7 +18,7 @@ const Login = () => {
     const { email, password } = usuario;
 
     const onSubmit = (e) =>{
-        e.preventDafault()
+        e.preventDefault()
     }
     return (
         <div className="form-usuario">
