@@ -14,6 +14,10 @@ const NuevoProyectos = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    const onSubmitProyetos=(e)=>{
+        e.preventDefaul()
+    }
     return (
         <>
             <button
@@ -24,6 +28,7 @@ const NuevoProyectos = () => {
             </button>
             <form
                 className='formulario-nuevo-proyecto'
+                onSubmit={onSubmitProyetos}
             >
                 <input
                     type="text"
