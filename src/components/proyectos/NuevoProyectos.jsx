@@ -1,11 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, } from 'react';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 
+
 const NuevoProyectos = () => {
+
     //obtener el state del formaulario
     const proyectosContext = useContext(proyectoContext);
-    const { formulario } = proyectosContext;
+    const { formulario, mostarFormulario } = proyectosContext;
 
+   
     //state para proyecto
     const [ proyectos, guardarProyectos ] = useState({
         nombre:''
@@ -28,6 +31,7 @@ const NuevoProyectos = () => {
             <button
                 type='button'
                 className='btn btn-block btn-primario'
+                onClick={()=> mostarFormulario(formulario)}
             >
                 Nuevo Proyecto
             </button>
