@@ -1,4 +1,4 @@
-import { FORMAULARIO_PROYECTO } from "../../types"
+import { FORMAULARIO_PROYECTO, OBTENER_PROYECTOS } from "../../types"
 
 export default (state, action) => {
     switch(action.type){
@@ -6,6 +6,11 @@ export default (state, action) => {
             return {
                 ...state,
                 formulario: !action.payload
+            }
+        case OBTENER_PROYECTOS :
+            return {
+                ...state,
+                proyectos: action.payload
             }
         default:
             return state

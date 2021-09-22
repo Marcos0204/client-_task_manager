@@ -1,11 +1,14 @@
-import React, {useContext} from 'react';
+import React, { useContext, useEffect} from 'react';
 import Proyecto from './proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const Listado = () => {
 
     const proyectosContext = useContext(proyectoContext);
-    const { proyectos } = proyectosContext;
+    const { proyectos, obtenerProyectos } = proyectosContext;
+    useEffect(() => {
+        obtenerProyectos()
+    }, [])
 
     return (
         <ul className='listado-proyectos'>
