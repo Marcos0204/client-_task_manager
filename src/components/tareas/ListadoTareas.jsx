@@ -4,7 +4,7 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
     const proyectosContext = useContext(proyectoContext);
-    const { proyecto } = proyectosContext;
+    const { proyecto, iliminaProyecto } = proyectosContext;
     
     if(!proyecto) return <h2>seleccione un proyecto</h2>
 
@@ -17,6 +17,11 @@ const ListadoTareas = () => {
         {nombre:'elegir plataformas de pago', estado:false },
         {nombre:'elegir Hosting', estado: true}
     ]
+
+    const onClickEliminar = () => {
+        
+        iliminaProyecto(proyectoActual.id)
+    }
 
 
     return (
@@ -32,6 +37,7 @@ const ListadoTareas = () => {
                 <button
                     type='button'
                     className='btn btn-eliminar'
+                    onClick={()=> onClickEliminar()}
                 >
                     eliminar Proyecto &time;
                 </button>

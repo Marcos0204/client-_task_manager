@@ -7,7 +7,8 @@ import { FORMAULARIO_PROYECTO,
         OBTENER_PROYECTOS,
         AGREGAR_PROYECTO,
         VALIDAR_FORMULARIO,
-        PROYECTO_ACTUAL
+        PROYECTO_ACTUAL,
+        ELINAR_PROYECTO
     } from "../../types";
 
 
@@ -28,11 +29,11 @@ const ProyectoState = props => {
         proyecto: null
     }
     //Dispath para ejecutar las acciones
-    const [state, disptch] = useReducer(proyectoReducer, stateInitial);
+    const [state, dispatch] = useReducer(proyectoReducer, stateInitial);
 
     //serie de funciones para el CRUD
     const mostarFormulario = (value) =>{
-        disptch({
+        dispatch({
             type:FORMAULARIO_PROYECTO,
             payload:value
         })
@@ -40,7 +41,7 @@ const ProyectoState = props => {
 
     //obtener proyectos
     const obtenerProyectos = () => {
-        disptch({
+        dispatch({
             type: OBTENER_PROYECTOS,
             payload: proyectos
         })
@@ -50,7 +51,7 @@ const ProyectoState = props => {
     const agregarProyecto = proyecto =>{
         proyecto.id = uuidv4()
 
-        disptch({
+        dispatch({
             type: AGREGAR_PROYECTO,
             payload: proyecto
         })
@@ -58,15 +59,23 @@ const ProyectoState = props => {
 
     //VALIDAR FORMULARIO
     const mostrarError = () =>{
-        disptch({
+        dispatch({
             type: VALIDAR_FORMULARIO
         })
     }
 
     ///SELECION EL PROYECTO AL QUE EL USUARI LE DA CLICK
     const proyectoActual = (proyectoID) => {
-        disptch({
+        dispatch({
             type: PROYECTO_ACTUAL,
+            payload: proyectoID
+        })
+    }
+
+    ///ELIMINAR PROYECTO 
+    const iliminaProyecto = proyectoID =>{
+        dispatch({
+            type: ELINAR_PROYECTO,
             payload: proyectoID
         })
     }
@@ -82,7 +91,8 @@ const ProyectoState = props => {
                 obtenerProyectos,
                 agregarProyecto,
                 mostrarError,
-                proyectoActual
+                proyectoActual,
+                iliminaProyecto
             }}
         >
             {props.children}
