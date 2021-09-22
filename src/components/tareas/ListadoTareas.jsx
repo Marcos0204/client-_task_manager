@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tarea from './Tarea';
+import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
+    const proyectosContext = useContext(proyectoContext);
+    const { proyecto } = proyectosContext;
+    
+    if(!proyecto) return <h2>seleccione un proyecto</h2>
+
+    const [proyectoActual] = proyecto
+
+
     const tareas = [
         {nombre:'elegir plataforma', estado:true},
         {nombre:'elegir colores', estado:false },
         {nombre:'elegir plataformas de pago', estado:false },
         {nombre:'elegir Hosting', estado: true}
     ]
+
+
     return (
         <>
-            <h2>Proyecto: Tienda virtual</h2>
+            <h2>Proyecto: {proyectoActual.nombre}</h2>
             <ul className="listado-tareas">
                 { tareas.length === 0
                     ? (<li className='tarea'><p>No Hay Tareas</p> </li>)
@@ -25,7 +36,6 @@ const ListadoTareas = () => {
                     eliminar Proyecto &time;
                 </button>
             </ul>
-            
         </>
     )
 }
