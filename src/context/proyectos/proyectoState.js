@@ -6,7 +6,12 @@ import { FORMAULARIO_PROYECTO } from "../../types";
 
 const ProyectoState = props => {
     const stateInitial = {
-        formulario: false
+        formulario: false,
+        proyectos : [
+            {id:1, nombre:'intranet'},
+            {id:2, nombre:'tienda virtual'},
+            {id:3, nombre:'Diseño de Sitio web'},
+        ]
     }
     //Dispath para ejecutar las acciones
     const [state, disptch] = useReducer(proyectoReducer, stateInitial);
@@ -22,6 +27,7 @@ const ProyectoState = props => {
     return (
         <proyectoContext.Provider
             value={{
+                proyectos: state.proyectos,
                 formulario: state.formulario,
                 mostarFormulario
             }}
