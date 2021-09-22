@@ -6,25 +6,43 @@ const NuevoProyectos = () => {
 
     //obtener el state del formaulario
     const proyectosContext = useContext(proyectoContext);
-    const { formulario, mostarFormulario } = proyectosContext;
+    const { formulario, 
+            mostarFormulario,
+            agregarProyecto
+            } = proyectosContext;
 
    
     //state para proyecto
-    const [ proyectos, guardarProyectos ] = useState({
+    const [ proyecto, guardarProyecto ] = useState({
         nombre:''
     })
-    const {nombre} = proyectos;
+    const {nombre} = proyecto;
 
     const onChangeProyecto = (e) =>{
 
-        guardarProyectos({
-            ...proyectos,
+        guardarProyecto({
+            ...proyecto,
             [e.target.name]: e.target.value
         })
     }
 
     const onSubmitProyetos=(e)=>{
-        e.preventDefaul()
+        e.preventDefault()
+
+        //validar el state
+        if(nombre===''){
+            return
+        }
+
+        //adding in the state
+        agregarProyecto(proyecto)
+
+        //Reiniciar form
+        guardarProyecto({
+            nombre:''
+        })
+        
+
     }
     return (
         <>
@@ -43,7 +61,7 @@ const NuevoProyectos = () => {
                     <input
                         type="text"
                         className='input-text'
-                        placeholder='Nombre del Proyectos'
+                        placeholder='Nombre del Proyect'
                         name='nombre'
                         value={nombre}
                         onChange={onChangeProyecto}
