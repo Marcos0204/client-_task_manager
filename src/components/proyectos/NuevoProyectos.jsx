@@ -10,7 +10,7 @@ const NuevoProyectos = () => {
             mostarFormulario,
             agregarProyecto,
             errorformulario,
-            mostrarError
+            mostrarError,
             } = proyectosContext;
 
    
