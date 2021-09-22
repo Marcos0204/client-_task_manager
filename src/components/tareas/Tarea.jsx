@@ -1,8 +1,44 @@
 import React from 'react'
 
-const Tarea = () => {
+const Tarea = ({tarea}) => {
     return (
-        <p>Desde tarea</p>
+        <li className='tarea sombra'>
+            {tarea.nombre}
+            <div className="estado">
+                {tarea.estado
+                    ? (
+                        <button
+                            type='button'
+                            className='completo'
+                        >
+                            completo
+                        </button>
+                    )
+                    : (
+                        <button
+                            type='button'
+                            className='incompleto'
+                        >
+                            incompleto
+                        </button>
+                    )
+                }
+            </div>
+            <div className="acciones">
+                <button
+                    type='button'
+                    className='btn btn-primario'
+                >
+                    Editar
+                </button>
+                <button
+                    type='button'
+                    className='btn btn-secundario'
+                >
+                    Eliminar
+                </button>
+            </div>
+        </li>
     )
 }
 

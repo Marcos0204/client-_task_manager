@@ -18,7 +18,14 @@ const ListadoTareas = () => {
                         <Tarea tarea={tarea} key={index}/>
                     ))
                 }
+                <button
+                    type='button'
+                    className='btn btn-eliminar'
+                >
+                    eliminar Proyecto &time;
+                </button>
             </ul>
+            
         </>
     )
 }
