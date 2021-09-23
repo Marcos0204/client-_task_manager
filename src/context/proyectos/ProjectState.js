@@ -1,24 +1,24 @@
 
 import { useReducer } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import proyectoContext from "./proyectoContext";
-import proyectoReducer from "./proyectoReducer";
-import { FORMAULARIO_PROYECTO,
-        OBTENER_PROYECTOS,
-        AGREGAR_PROYECTO,
-        VALIDAR_FORMULARIO,
-        PROYECTO_ACTUAL,
-        ELINAR_PROYECTO
+import proyectoContext from "./ProjectContext";
+import ProjectReducer from "./ProjectReducer";
+import { PROJECT_FORM,
+        GET_PROJECTS,
+        ADD_PROJECT,
+        VALIDAR_FORMULARY,
+        ACTUAL_PROJECT,
+        DELETE_PROJECT
     } from "../../types";
 
 
 
-const ProyectoState = props => {
+const ProjectState = props => {
 
     const proyectos = [
-        {id:1, nombre:'intranet'},
-        {id:2, nombre:'tienda virtual'},
-        {id:3, nombre:'Diseño de Sitio web'}
+        {id:1, name:'intranet'},
+        {id:2, name:'tienda virtual'},
+        {id:3, name:'Diseño de Sitio web'}
     ]
     
 
@@ -29,12 +29,12 @@ const ProyectoState = props => {
         proyecto: null
     }
     //Dispath para ejecutar las acciones
-    const [state, dispatch] = useReducer(proyectoReducer, stateInitial);
+    const [state, dispatch] = useReducer(ProjectReducer, stateInitial);
 
     //serie de funciones para el CRUD
     const mostarFormulario = (value) =>{
         dispatch({
-            type:FORMAULARIO_PROYECTO,
+            type:PROJECT_FORM,
             payload:value
         })
     }
@@ -42,32 +42,32 @@ const ProyectoState = props => {
     //obtener proyectos
     const obtenerProyectos = () => {
         dispatch({
-            type: OBTENER_PROYECTOS,
+            type: GET_PROJECTS,
             payload: proyectos
         })
     }
 
     //AGREGAR PROYECTOS
-    const agregarProyecto = proyecto =>{
-        proyecto.id = uuidv4()
+    const agregarProyecto = project =>{
+        project.id = uuidv4()
 
         dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: proyecto
+            type: ADD_PROJECT,
+            payload: project
         })
     }
 
     //VALIDAR FORMULARIO
     const mostrarError = () =>{
         dispatch({
-            type: VALIDAR_FORMULARIO
+            type: VALIDAR_FORMULARY
         })
     }
 
     ///SELECION EL PROYECTO AL QUE EL USUARI LE DA CLICK
     const proyectoActual = (proyectoID) => {
         dispatch({
-            type: PROYECTO_ACTUAL,
+            type: ACTUAL_PROJECT,
             payload: proyectoID
         })
     }
@@ -75,7 +75,7 @@ const ProyectoState = props => {
     ///ELIMINAR PROYECTO 
     const iliminaProyecto = proyectoID =>{
         dispatch({
-            type: ELINAR_PROYECTO,
+            type: DELETE_PROJECT,
             payload: proyectoID
         })
     }
@@ -100,4 +100,4 @@ const ProyectoState = props => {
     )
 }
 
-export default ProyectoState;
+export default ProjectState;

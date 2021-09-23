@@ -1,15 +1,15 @@
 import React from 'react';
-import NuevoProyectos from '../proyectos/NuevoProyectos';
-import Listado from '../proyectos/Listado';
+import NewProjects from '../projects/NewProjects';
+import List from '../projects/List';
 
 const Sidebar = () => {
     return (
         <aside>
             <h1>MERN <span>tasks</span> </h1>
-            <NuevoProyectos/>
+            <NewProjects/>
             <div className="proyectos">
                 <h2>Tus Proyectos</h2>
-                <Listado/>
+                <List/>
             </div>
         </aside>
     )

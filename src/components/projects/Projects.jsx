@@ -1,19 +1,19 @@
 import React from "react";
 import Sidebar from "../layout/Sidebar";
-import Barra from '../layout/Barra';
-import FormTarea from "../tareas/FormTarea";
-import ListadoTareas from "../tareas/ListadoTareas";
+import NavBar from '../layout/NavBar';
+import FormTarea from "../tasks/FormTask";
+import ListTasks from "../tasks/ListTasks";
 
-const Proyectos = () => {
+const Projects = () => {
     return(
         <div className="contenedor-app">
             <Sidebar/>
             <div className="seccion-principal">
-                <Barra />
+                <NavBar />
                 <main>
                     <FormTarea />
                     <div className="contenedor-tareas">
-                        <ListadoTareas/>
+                        <ListTasks/>
                     </div>
                 </main>
             </div>
@@ -21,4 +21,4 @@ const Proyectos = () => {
     )
 }
 
-export default Proyectos;
+export default Projects;

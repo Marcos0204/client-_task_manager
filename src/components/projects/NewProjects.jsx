@@ -1,11 +1,11 @@
 import React, {useContext, useState, } from 'react';
-import proyectoContext from '../../context/proyectos/proyectoContext';
+import ProjectContext from '../../context/proyectos/ProjectContext';
 
 
-const NuevoProyectos = () => {
+const NewProjects = () => {
 
     //obtener el state del formaulario
-    const proyectosContext = useContext(proyectoContext);
+    const proyectosContext = useContext(ProjectContext);
     const { formulario, 
             mostarFormulario,
             agregarProyecto,
@@ -15,33 +15,33 @@ const NuevoProyectos = () => {
 
    
     //state para proyecto
-    const [ proyecto, guardarProyecto ] = useState({
-        nombre:''
+    const [ project, setProject ] = useState({
+        name:''
     })
-    const {nombre} = proyecto;
+    const {name} = project;
 
-    const onChangeProyecto = (e) =>{
+    const onChangeProject = (e) =>{
 
-        guardarProyecto({
-            ...proyecto,
+        setProject({
+            ...project,
             [e.target.name]: e.target.value
         })
     }
 
-    const onSubmitProyetos=(e)=>{
+    const onSubmitProject=(e)=>{
         e.preventDefault()
 
         //validar el state
-        if(nombre===''){
+        if(name ===''){
             return mostrarError()
         }
 
         //adding in the state
-        agregarProyecto(proyecto)
+        agregarProyecto(project)
 
         //Reiniciar form
-        guardarProyecto({
-            nombre:''
+        setProject({
+            name:''
         })
         
 
@@ -58,15 +58,15 @@ const NuevoProyectos = () => {
             {formulario ? (
                 <form
                     className='formulario-nuevo-proyecto'
-                    onSubmit={onSubmitProyetos}
+                    onSubmit={onSubmitProject}
                 >
                     <input
                         type="text"
                         className='input-text'
                         placeholder='Nombre del Proyect'
-                        name='nombre'
-                        value={nombre}
-                        onChange={onChangeProyecto}
+                        name='name'
+                        value={name}
+                        onChange={onChangeProject}
                     />
                     <input
                         type="submit"
@@ -83,4 +83,4 @@ const NuevoProyectos = () => {
     )
 }
 
-export default NuevoProyectos
+export default NewProjects

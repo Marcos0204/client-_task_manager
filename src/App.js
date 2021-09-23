@@ -1,27 +1,27 @@
 import React from "react";
 import Login from "./components/auth/Login";
-import NuevaCuenta from "./components/auth/NuevaCuenta";
-import Proyectos from "./components/proyectos/Proyectos";
+import NewAccount from "./components/auth/NewAccount";
+import Projects from "./components/projects/Projects";
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import ProyectoState from "./context/proyectos/proyectoState";
+import ProjectState from "./context/proyectos/ProjectState";
 import TaskState from "./context/task/taskState";
 
 
 function App() {
   return (
-    <ProyectoState>
+    <ProjectState>
       <TaskState>
         <Router>
           <Switch>
             <Route exact path='/' component={Login} />
-            <Route exact path='/nueva-cuenta' component={NuevaCuenta} />
-            <Route exact path='/proyectos' component={Proyectos} />
+            <Route exact path='/nueva-cuenta' component={NewAccount} />
+            <Route exact path='/proyectos' component={Projects} />
           </Switch>
         </Router>
       </TaskState>
-    </ProyectoState>
+    </ProjectState>
   );
 }
 

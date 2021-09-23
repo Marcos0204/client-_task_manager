@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Task from './Task';
-import proyectoContext from '../../context/proyectos/proyectoContext';
+import ProjectContext from '../../context/proyectos/ProjectContext';
 
-const ListadoTareas = () => {
-    const proyectosContext = useContext(proyectoContext);
+const ListTasks = () => {
+    const proyectosContext = useContext(ProjectContext);
     const { proyecto, iliminaProyecto } = proyectosContext;
     
     if(!proyecto) return <h2>seleccione un proyecto</h2>
@@ -26,7 +26,7 @@ const ListadoTareas = () => {
 
     return (
         <>
-            <h2>Proyecto: {proyectoActual.nombre}</h2>
+            <h2>Proyecto: {proyectoActual.name}</h2>
             <ul className="listado-tareas">
                 { tasks.length === 0
                     ? (<li className='tarea'><p>No Hay Tareas</p> </li>)
@@ -46,4 +46,4 @@ const ListadoTareas = () => {
     )
 }
 
-export default ListadoTareas
+export default ListTasks

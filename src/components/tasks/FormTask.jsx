@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import proyectoContext from '../../context/proyectos/proyectoContext';
+import ProjectContext from '../../context/proyectos/ProjectContext';
 
 const FormTarea = () => {
-    const proyectosContext = useContext(proyectoContext);
+    const proyectosContext = useContext(ProjectContext);
     const { proyecto } = proyectosContext;
     if(!proyecto) return null
     const [proyectoActual] = proyecto
