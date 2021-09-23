@@ -9,6 +9,12 @@ const FormTask = () => {
 
     const hanledSubmit = (e)=>{
         e.preventDefault();
+
+        ///validate
+
+        //add task to state
+
+        // reset form
     }
     return (
         <div className='formulario'>
