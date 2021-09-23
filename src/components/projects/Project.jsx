@@ -3,13 +3,13 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 
 const Project = ({project}) => {
     const proyectosContext = useContext(ProjectContext);
-    const { proyectoActual } = proyectosContext;
+    const { actualProject } = proyectosContext;
     
     return (
         <li>
             <button
                 className='btn btn-blank'
-                onClick={()=> proyectoActual(project.id)}
+                onClick={()=> actualProject(project.id)}
             >
                 {project.name}
             </button>

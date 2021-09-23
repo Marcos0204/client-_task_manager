@@ -5,13 +5,13 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 const NewProjects = () => {
 
     //obtener el state del formaulario
-    const proyectosContext = useContext(ProjectContext);
-    const { formulario, 
-            mostarFormulario,
-            agregarProyecto,
-            errorformulario,
-            mostrarError,
-            } = proyectosContext;
+    const projectContext = useContext(ProjectContext);
+    const { formNewProject, 
+            show_form,
+            addProject,
+            errorForm,
+            showError,
+            } = projectContext;
 
    
     //state para proyecto
@@ -33,11 +33,11 @@ const NewProjects = () => {
 
         //validar el state
         if(name ===''){
-            return mostrarError()
+            return showError()
         }
 
         //adding in the state
-        agregarProyecto(project)
+        addProject(project)
 
         //Reiniciar form
         setProject({
@@ -51,11 +51,11 @@ const NewProjects = () => {
             <button
                 type='button'
                 className='btn btn-block btn-primario'
-                onClick={()=> mostarFormulario(formulario)}
+                onClick={()=> show_form(formNewProject)}
             >
                 Nuevo Proyecto
             </button>
-            {formulario ? (
+            {formNewProject ? (
                 <form
                     className='formulario-nuevo-proyecto'
                     onSubmit={onSubmitProject}
@@ -75,7 +75,7 @@ const NewProjects = () => {
 
                 </form>
             ) : null}
-            {errorformulario ?(
+            {errorForm ?(
                 <p className="mensaje error">El nombre de proyecto es obligatorio</p>
             ) : null
         }

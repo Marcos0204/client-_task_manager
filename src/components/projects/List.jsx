@@ -5,17 +5,17 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 const List = () => {
 
     const projectContext = useContext(ProjectContext);
-    const { proyectos, obtenerProyectos } = projectContext;
+    const { projects, getProjects } = projectContext;
     useEffect(() => {
-        obtenerProyectos()
+        getProjects()
     }, [])
 
-    if(proyectos.length===0) return <p>No hay proyectos, comienza creando uno.</p>
+    if(projects.length===0) return <p>No hay proyectos, comienza creando uno.</p>
 
     return (
         <ul className='listado-proyectos'>
-            { proyectos.length > 0 &&
-                proyectos.map((project, index) =>(
+            { projects.length > 0 &&
+                projects.map((project, index) =>(
                     <Project project={project} key={index}/>
                 ))
             }

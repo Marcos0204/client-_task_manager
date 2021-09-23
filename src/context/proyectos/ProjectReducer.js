@@ -11,35 +11,35 @@ export default (state, action) => {
         case PROJECT_FORM:
             return {
                 ...state,
-                formulario: !action.payload
+                formNewProject: !action.payload
             }
         case GET_PROJECTS :
             return {
                 ...state,
-                proyectos: action.payload
+                projects: action.payload
             }
         case ADD_PROJECT :
             return {
                 ...state, 
-                proyectos: [...state.proyectos, action.payload],
+                projects: [...state.projects, action.payload],
                 formulario: false,
-                errorformulario: false
+                errorForm: false
             }
         case VALIDAR_FORMULARY :
             return {
                 ...state,
-                errorformulario: true
+                errorForm: true
             }
         case ACTUAL_PROJECT:
             return{
                 ...state,
-                proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
+                project: state.projects.filter(item => item.id === action.payload)
             }
         case DELETE_PROJECT: 
             return{
                 ...state,
-                proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload),
-                proyecto: null
+                projects: state.projects.filter(item => item.id !== action.payload),
+                project: null
             }
         default:
             return state

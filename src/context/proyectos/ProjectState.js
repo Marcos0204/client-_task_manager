@@ -15,7 +15,7 @@ import { PROJECT_FORM,
 
 const ProjectState = props => {
 
-    const proyectos = [
+    const projects = [
         {id:1, name:'intranet'},
         {id:2, name:'tienda virtual'},
         {id:3, name:'Diseño de Sitio web'}
@@ -23,16 +23,16 @@ const ProjectState = props => {
     
 
     const stateInitial = {
-        formulario: false,
-        proyectos : [],
-        errorformulario: false,
-        proyecto: null
+        formNewProject: false,
+        projects : [],
+        errorForm: false,
+        project: null
     }
     //Dispath para ejecutar las acciones
     const [state, dispatch] = useReducer(ProjectReducer, stateInitial);
 
     //serie de funciones para el CRUD
-    const mostarFormulario = (value) =>{
+    const show_form = (value) =>{
         dispatch({
             type:PROJECT_FORM,
             payload:value
@@ -40,15 +40,15 @@ const ProjectState = props => {
     }
 
     //obtener proyectos
-    const obtenerProyectos = () => {
+    const getProjects = () => {
         dispatch({
             type: GET_PROJECTS,
-            payload: proyectos
+            payload: projects
         })
     }
 
     //AGREGAR PROYECTOS
-    const agregarProyecto = project =>{
+    const addProject = project =>{
         project.id = uuidv4()
 
         dispatch({
@@ -58,14 +58,14 @@ const ProjectState = props => {
     }
 
     //VALIDAR FORMULARIO
-    const mostrarError = () =>{
+    const showError = () =>{
         dispatch({
             type: VALIDAR_FORMULARY
         })
     }
 
     ///SELECION EL PROYECTO AL QUE EL USUARI LE DA CLICK
-    const proyectoActual = (proyectoID) => {
+    const actualProject = (proyectoID) => {
         dispatch({
             type: ACTUAL_PROJECT,
             payload: proyectoID
@@ -73,7 +73,7 @@ const ProjectState = props => {
     }
 
     ///ELIMINAR PROYECTO 
-    const iliminaProyecto = proyectoID =>{
+    const deleteProject = proyectoID =>{
         dispatch({
             type: DELETE_PROJECT,
             payload: proyectoID
@@ -83,16 +83,16 @@ const ProjectState = props => {
     return (
         <proyectoContext.Provider
             value={{
-                proyectos: state.proyectos,
-                formulario: state.formulario,
-                errorformulario: state.errorformulario,
-                proyecto: state.proyecto,
-                mostarFormulario,
-                obtenerProyectos,
-                agregarProyecto,
-                mostrarError,
-                proyectoActual,
-                iliminaProyecto
+                projects: state.projects,
+                formNewProject: state.formNewProject,
+                errorForm: state.errorForm,
+                project: state.project,
+                show_form,
+                getProjects,
+                addProject,
+                showError,
+                actualProject,
+                deleteProject
             }}
         >
             {props.children}

@@ -4,11 +4,11 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 
 const ListTasks = () => {
     const proyectosContext = useContext(ProjectContext);
-    const { proyecto, iliminaProyecto } = proyectosContext;
+    const { project, deleteProject } = proyectosContext;
     
-    if(!proyecto) return <h2>seleccione un proyecto</h2>
+    if(!project) return <h2>seleccione un proyecto</h2>
 
-    const [proyectoActual] = proyecto
+    const [actualProject] = project
 
 
     const tasks = [
@@ -20,13 +20,13 @@ const ListTasks = () => {
 
     const onClickEliminar = () => {
         
-        iliminaProyecto(proyectoActual.id)
+        deleteProject(actualProject.id)
     }
 
 
     return (
         <>
-            <h2>Proyecto: {proyectoActual.name}</h2>
+            <h2>Proyecto: {actualProject.name}</h2>
             <ul className="listado-tareas">
                 { tasks.length === 0
                     ? (<li className='tarea'><p>No Hay Tareas</p> </li>)
