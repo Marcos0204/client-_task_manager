@@ -16,9 +16,6 @@ const ListTasks = () => {
 
     const [actualProject] = project
 
-
-    const tasks = []
-
     const onClickEliminar = () => {
         
         deleteProject(actualProject.id)
