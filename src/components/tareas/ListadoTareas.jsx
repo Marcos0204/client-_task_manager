@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Tarea from './Tarea';
+import Task from './Task';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
@@ -11,11 +11,11 @@ const ListadoTareas = () => {
     const [proyectoActual] = proyecto
 
 
-    const tareas = [
-        {nombre:'elegir plataforma', estado:true},
-        {nombre:'elegir colores', estado:false },
-        {nombre:'elegir plataformas de pago', estado:false },
-        {nombre:'elegir Hosting', estado: true}
+    const tasks = [
+        {name:'elegir plataforma', state:true},
+        {name:'elegir colores', state:false },
+        {name:'elegir plataformas de pago', state:false },
+        {name:'elegir Hosting', state: true}
     ]
 
     const onClickEliminar = () => {
@@ -28,10 +28,10 @@ const ListadoTareas = () => {
         <>
             <h2>Proyecto: {proyectoActual.nombre}</h2>
             <ul className="listado-tareas">
-                { tareas.length === 0
+                { tasks.length === 0
                     ? (<li className='tarea'><p>No Hay Tareas</p> </li>)
-                    : tareas.map((tarea, index) =>(
-                        <Tarea tarea={tarea} key={index}/>
+                    : tasks.map((task, index) =>(
+                        <Task task={task} key={index}/>
                     ))
                 }
                 <button
