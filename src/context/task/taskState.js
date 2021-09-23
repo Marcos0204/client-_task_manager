@@ -11,7 +11,7 @@ import { TASKS_PROJECT
 const TaskState = props => {
 
     const initialSate = {
-        task:[
+        tasks:[
         {name:'elegir plataforma', state:true, projectId: 1},
         {name:'elegir colores', state:false, projectId:2},
         {name:'elegir plataformas de pago', state:false, projectId:3 },
@@ -24,7 +24,12 @@ const TaskState = props => {
         {name:'elegir colores', state:false, projectId:2},
         {name:'elegir plataformas de pago', state:false, projectId:3 },
         {name:'elegir Hosting', state: true, projectId:4},
-        ]
+        {name:'elegir uno', state:true, projectId: 1},
+        {name:'elegir dos', state:false, projectId:2},
+        {name:'elegir tres de pago', state:false, projectId:3 },
+        {name:'elegir cuatro', state: true, projectId:4},
+        ],
+        taskProject:null
     }
 
     // state and dispatch
@@ -43,7 +48,8 @@ const TaskState = props => {
     return(
         <TaskContext.Provider
             value={{
-                task:state.task,
+                tasks:state.tasks,
+                taskProject: state.taskProject,
                 getTask
             }}
         >

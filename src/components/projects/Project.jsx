@@ -10,6 +10,7 @@ const Project = ({project}) => {
     const {getTask} = taskContext;
     
     const selectProject = id =>{
+        
         actualProject(id);
         getTask(id)
     }
