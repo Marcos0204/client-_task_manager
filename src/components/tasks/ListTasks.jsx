@@ -3,6 +3,7 @@ import Task from './Task';
 import ProjectContext from '../../context/proyectos/ProjectContext';
 import TaskContext from '../../context/task/taskContext';
 
+
 const ListTasks = () => {
     const proyectosContext = useContext(ProjectContext);
     const { project, deleteProject } = proyectosContext;
@@ -28,7 +29,8 @@ const ListTasks = () => {
             <ul className="listado-tareas">
                 { taskProject.length === 0
                     ? (<li className='tarea'><p>No Hay Tareas</p> </li>)
-                    : taskProject.map((task, index) =>(
+                    :
+                    taskProject.map((task, index) =>(
                         <Task task={task} key={index}/>
                     ))
                 }

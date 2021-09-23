@@ -66,7 +66,6 @@ const TaskState = props => {
 
     /// DALETE
     const deleteTask = id =>{
-        console.log('eliminando')
         dispatch({
             type:DELETE_TASK,
             payload: id
