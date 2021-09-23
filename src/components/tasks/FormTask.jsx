@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
 import ProjectContext from '../../context/proyectos/ProjectContext';
 
-const FormTarea = () => {
+const FormTask = () => {
     const proyectosContext = useContext(ProjectContext);
-    const { proyecto } = proyectosContext;
-    if(!proyecto) return null
-    const [proyectoActual] = proyecto
+    const { project } = proyectosContext;
+    if(!project) return null
+    const [proyectoActual] = project;
+
+    const hanledSubmit = (e)=>{
+        e.preventDefault();
+    }
     return (
         <div className='formulario'>
-            <form>
+            <form
+                onSubmit={hanledSubmit}
+            >
                 <div className="contenedor-input">
                     <input
                         type="text"
@@ -29,4 +35,4 @@ const FormTarea = () => {
     )
 }
 
-export default FormTarea
+export default FormTask

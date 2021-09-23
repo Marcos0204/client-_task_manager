@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../layout/Sidebar";
 import NavBar from '../layout/NavBar';
-import FormTarea from "../tasks/FormTask";
+import FormTask from "../tasks/FormTask";
 import ListTasks from "../tasks/ListTasks";
 
 const Projects = () => {
@@ -11,7 +11,7 @@ const Projects = () => {
             <div className="seccion-principal">
                 <NavBar />
                 <main>
-                    <FormTarea />
+                    <FormTask />
                     <div className="contenedor-tareas">
                         <ListTasks/>
                     </div>
