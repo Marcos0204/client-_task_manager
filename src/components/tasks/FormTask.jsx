@@ -9,8 +9,7 @@ const FormTask = () => {
     // get Funtion addtask
     const taskContext = useContext(TaskContext);
     const { addTask, validateTask, errorTask, getTask } = taskContext;
-    console.log('this is')
-    console.log(addTask)
+
 
     //state form
     const [task, setTask] = useState({
@@ -43,7 +42,6 @@ const FormTask = () => {
         //add task to state
         task.projectId = projectActual.id;
         task.state = false
-        console.log(task)
         addTask(task)
 
         ///

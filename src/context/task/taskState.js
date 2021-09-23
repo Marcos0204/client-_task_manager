@@ -5,7 +5,8 @@ import TaskReducer from "./taskReducer";
 
 import { TASKS_PROJECT,
         ADD_TASK,
-        VALIDATE_TASK
+        VALIDATE_TASK,
+        DELETE_TASK
         } from "../../types";
 
 
@@ -13,22 +14,22 @@ const TaskState = props => {
 
     const initialSate = {
         tasks:[
-        {name:'elegir plataforma', state:true, projectId: 1},
-        {name:'elegir colores', state:false, projectId:2},
-        {name:'elegir plataformas de pago', state:false, projectId:3 },
-        {name:'elegir Hosting', state: true, projectId:4},
-        {name:'elegir plataforma', state:true, projectId: 1},
-        {name:'elegir colores', state:false, projectId:2},
-        {name:'elegir plataformas de pago', state:false, projectId:3 },
-        {name:'elegir Hosting', state: true, projectId:4},
-        {name:'elegir plataforma', state:true, projectId: 1},
-        {name:'elegir colores', state:false, projectId:2},
-        {name:'elegir plataformas de pago', state:false, projectId:3 },
-        {name:'elegir Hosting', state: true, projectId:4},
-        {name:'elegir uno', state:true, projectId: 1},
-        {name:'elegir dos', state:false, projectId:2},
-        {name:'elegir tres de pago', state:false, projectId:3 },
-        {name:'elegir cuatro', state: true, projectId:4},
+        {id: 1,name:'elegir plataforma', state:true, projectId: 1},
+        {id: 2,name:'elegir colores', state:false, projectId:2},
+        {id: 3,name:'elegir plataformas de pago', state:false, projectId:3 },
+        {id: 4,name:'elegir Hosting', state: true, projectId:4},
+        {id: 5,name:'elegir plataforma', state:true, projectId: 1},
+        {id: 6,name:'elegir colores', state:false, projectId:2},
+        {id: 7,name:'elegir plataformas de pago', state:false, projectId:3 },
+        {id: 8,name:'elegir Hosting', state: true, projectId:4},
+        {id: 9,name:'elegir plataforma', state:true, projectId: 1},
+        {id: 10,name:'elegir colores', state:false, projectId:2},
+        {id: 11,name:'elegir plataformas de pago', state:false, projectId:3 },
+        {id: 12,name:'elegir Hosting', state: true, projectId:4},
+        {id: 13,name:'elegir uno', state:true, projectId: 1},
+        {id: 14,name:'elegir dos', state:false, projectId:2},
+        {id: 15,name:'elegir tres de pago', state:false, projectId:3 },
+        {id: 16,name:'elegir cuatro', state: true, projectId:4},
         ],
         taskProject:null,
         errorTask: false
@@ -63,6 +64,15 @@ const TaskState = props => {
         })
     }
 
+    /// DALETE
+    const deleteTask = id =>{
+        console.log('eliminando')
+        dispatch({
+            type:DELETE_TASK,
+            payload: id
+        })
+    }
+
     return(
         <TaskContext.Provider
             value={{
@@ -71,7 +81,8 @@ const TaskState = props => {
                 errorTask: state.errorTask,
                 getTask,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask,
             }}
         >
             {props.children}
