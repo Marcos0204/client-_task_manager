@@ -8,7 +8,7 @@ const FormTask = () => {
 
     // get Funtion addtask
     const taskContext = useContext(TaskContext);
-    const { addTask } = taskContext;
+    const { addTask, validateTask, errorTask, getTask } = taskContext;
     console.log('this is')
     console.log(addTask)
 
@@ -36,12 +36,18 @@ const FormTask = () => {
         
 
         ///validate
-
+        if(name.trim() === ''){
+            validateTask()
+            return null
+        }
         //add task to state
         task.projectId = projectActual.id;
         task.state = false
         console.log(task)
         addTask(task)
+
+        ///
+        getTask(projectActual.id)
 
         // reset form
         setTask({
@@ -72,6 +78,7 @@ const FormTask = () => {
                     />
                 </div>
             </form>
+            {errorTask && <p className='mensaje error'>El nombre de la tarea es obligatorio</p>}
         </div>
     )
 }
