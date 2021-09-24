@@ -4,7 +4,7 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 
 const Task = ({task}) => {
     const taskContext = useContext(TaskContext);
-    const { deleteTask, getTask, changeTaskStatus } = taskContext;
+    const { deleteTask, getTask, changeTaskStatus, saveCurrentTask } = taskContext;
 
     const proyectosContext = useContext(ProjectContext);
     const { project } = proyectosContext;
@@ -24,6 +24,12 @@ const Task = ({task}) => {
             task.state = true
         }
         changeTaskStatus(task)
+    }
+
+    //select task 
+
+    const selectTask = task =>{
+        saveCurrentTask(task);
     }
     return (
         <li className='tarea sombra'>
@@ -54,6 +60,7 @@ const Task = ({task}) => {
                 <button
                     type='button'
                     className='btn btn-primario'
+                    onClick={()=> selectTask(task)}
                 >
                     Editar
                 </button>
