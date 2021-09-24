@@ -8,6 +8,7 @@ const List = () => {
     const { projects, getProjects } = projectContext;
     useEffect(() => {
         getProjects()
+        // eslint-disable-next-line
     }, [])
 
     if(projects.length===0) return <p>No hay proyectos, comienza creando uno.</p>

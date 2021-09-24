@@ -12,3 +12,5 @@ export const VALIDATE_TASK = 'VALIDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK'; 
 export const TASK_STATUS = 'TASK_STATUS';
 export const TASK_ACTUAL = 'TASK_ACTUA';
+export const UPGRADE_TASK = 'UPGRADE_TASK'; 
+export const CLEAN_TASK = 'CLEAN_TAS';

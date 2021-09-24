@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProjectContext from '../../context/proyectos/ProjectContext';
 import TaskContext from '../../context/task/taskContext';
 
@@ -8,8 +8,18 @@ const FormTask = () => {
 
     // get Funtion addtask
     const taskContext = useContext(TaskContext);
-    const { addTask, validateTask, errorTask, getTask } = taskContext;
+    const { addTask, validateTask, errorTask, getTask, taskSelect, upgradeTask, cleanTask } = taskContext;
 
+    //effect to load task to edit
+    useEffect(()=>{
+        if(taskSelect !== null){
+            setTask(taskSelect)
+        } else {
+            setTask({
+                name:''
+            })
+        }
+    },[taskSelect])
 
     //state form
     const [task, setTask] = useState({
@@ -39,10 +49,20 @@ const FormTask = () => {
             validateTask()
             return null
         }
+        
         //add task to state
-        task.projectId = projectActual.id;
-        task.state = false
-        addTask(task)
+        if (taskSelect=== null) {
+            task.projectId = projectActual.id;
+            task.state = false
+            addTask(task)
+        } else{
+            //upgrade task
+            upgradeTask(task)
+            
+            //clean up task select
+            cleanTask()
+        }
+        
 
         ///
         getTask(projectActual.id)
@@ -72,7 +92,7 @@ const FormTask = () => {
                     <input 
                         type="submit"
                         className='btn btn-primario btn-block btn-submit'
-                        value='Agregar Tarea'
+                        value={taskSelect ?'Editar' : 'Agregar Tarea'}
                     />
                 </div>
             </form>
