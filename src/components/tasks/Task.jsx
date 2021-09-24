@@ -4,7 +4,7 @@ import ProjectContext from '../../context/proyectos/ProjectContext';
 
 const Task = ({task}) => {
     const taskContext = useContext(TaskContext);
-    const { deleteTask, getTask } = taskContext;
+    const { deleteTask, getTask, changeTaskStatus } = taskContext;
 
     const proyectosContext = useContext(ProjectContext);
     const { project } = proyectosContext;
@@ -15,6 +15,16 @@ const Task = ({task}) => {
         deleteTask(id)
         getTask(projectActual.id)
     }
+
+    const changeStatus = task =>{
+
+        if(task.state){
+            task.state = false
+        } else{
+            task.state = true
+        }
+        changeTaskStatus(task)
+    }
     return (
         <li className='tarea sombra'>
             {task.name}
@@ -24,6 +34,7 @@ const Task = ({task}) => {
                         <button
                             type='button'
                             className='completo'
+                            onClick= {()=>changeStatus(task)}
                         >
                             completo
                         </button>
@@ -32,6 +43,7 @@ const Task = ({task}) => {
                         <button
                             type='button'
                             className='incompleto'
+                            onClick= {()=>changeStatus(task)}
                         >
                             incompleto
                         </button>
