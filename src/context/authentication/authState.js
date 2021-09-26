@@ -75,6 +75,31 @@ const AuthState = (props) =>{
             })
         }
     } 
+    //when the user logs in
+    const logIn = async (data) =>{
+        try {
+            const answer = await clientAxios.post('/api/auth', data);
+            console.log(answer)
+            console.log('si funciona')
+            dispatch({
+                type: SUCCESSFUL_LOGIN,
+                payload: answer.data
+            })
+             //obtener el usuario
+            authenticatedUser()
+
+        } catch (error) {
+            console.log('error')
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alert
+            })
+        }
+    }
     
 
     return (
@@ -84,7 +109,8 @@ const AuthState = (props) =>{
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser
+                registerUser,
+                logIn
             }}
         >
             {props.children}
