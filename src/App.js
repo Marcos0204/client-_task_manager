@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ProjectState from "./context/proyectos/ProjectState";
 import TaskState from "./context/task/taskState";
 import AlertState from "./context/alerts/alertState";
+import AuthState from "./context/authentication/authState";
 
 
 function App() {
@@ -15,13 +16,15 @@ function App() {
     <ProjectState>
       <TaskState>
         <AlertState>
-          <Router>
-            <Switch>
-              <Route exact path='/' component={Login} />
-              <Route exact path='/nueva-cuenta' component={NewAccount} />
-              <Route exact path='/proyectos' component={Projects} />
-            </Switch>
-          </Router>
+          <AuthState>
+            <Router>
+              <Switch>
+                <Route exact path='/' component={Login} />
+                <Route exact path='/nueva-cuenta' component={NewAccount} />
+                <Route exact path='/proyectos' component={Projects} />
+              </Switch>
+            </Router>
+          </AuthState>
         </AlertState>
       </TaskState>
     </ProjectState>
