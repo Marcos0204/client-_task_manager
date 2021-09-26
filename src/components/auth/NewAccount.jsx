@@ -2,12 +2,17 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from "../../context/authentication/authContext";
 
 const NewAccount = () => {
-
+    /// context aler
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
     // console.log(`la alert is ${alert}` )
+
+    //context auth
+    const authContext = useContext(AuthContext);
+    const { registerUser } = authContext;
 
     const [user, saveUser] = useState({
         email:'',
@@ -45,11 +50,17 @@ const NewAccount = () => {
             showAlert('los password no son iguales', 'alerta-error')
             return;
         }
-        saveUser({
+        /*/saveUser({
             email:'',
             password:'',
             name:'',
             confirm:''
+        })*/
+        // action
+        registerUser({
+            name,
+            password,
+            email
         })
     }
     return (
