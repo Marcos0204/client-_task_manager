@@ -100,8 +100,16 @@ const AuthState = (props) =>{
             })
         }
     }
-    
+    // SIGN_OF
 
+    const SIGN_OF = ( ) =>{
+        dispatch({
+            type:SIGN_OF
+        })
+    }
+    
+    //const { token } = state;
+    //const getToken = (token) => token ? token : null; 
     return (
         <AuthContext.Provider
             value={{
@@ -110,7 +118,9 @@ const AuthState = (props) =>{
                 user: state.user,
                 message: state.message,
                 registerUser,
-                logIn
+                logIn,
+                authenticatedUser,
+                SIGN_OF
             }}
         >
             {props.children}

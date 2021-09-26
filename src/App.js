@@ -9,7 +9,12 @@ import ProjectState from "./context/proyectos/ProjectState";
 import TaskState from "./context/task/taskState";
 import AlertState from "./context/alerts/alertState";
 import AuthState from "./context/authentication/authState";
+import tokenAuth from "./config/token";
 
+const token = localStorage.getItem('token');
+if(token) {
+  tokenAuth(token)
+}
 
 function App() {
   console.log(process.env.REACT_APP_BACKEN_URL)
