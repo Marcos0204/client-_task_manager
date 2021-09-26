@@ -1,30 +1,60 @@
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import AlertContext from '../../context/alerts/alertContext';
 
 const NewAccount = () => {
 
-    const [usuario, guardarUsuario] = useState({
+    const alertContext = useContext(AlertContext);
+    const { alert, showAlert } = alertContext;
+    // console.log(`la alert is ${alert}` )
+
+    const [user, saveUser] = useState({
         email:'',
         password:'',
-        nombre:'',
-        confirmar:''
+        name:'',
+        confirm:''
     })
 
     const onChange = e =>{
-        guardarUsuario({
-            ...usuario,
+        saveUser({
+            ...user,
             [e.target.name]: e.target.value
         })
     }
 
-    const { nombre, email, password, confirmar } = usuario;
+    const { name, email, password, confirm } = user;
 
     const onSubmit = (e) =>{
         e.preventDefault()
+
+        // validar
+        if (name.trim() === '' ||
+            email.trim() === '' ||
+            password.trim() === '' ||
+            confirm.trim() === '' ){
+                showAlert('Todos los campos son obligatorios', 'alerta-error')
+                return;
+            }
+        //validar password 
+        if (password.length < 6 ) {
+            showAlert('el password debbe ser de almenos 6 caracteres', 'alerta-error')
+            return;
+        }
+        if (password !== confirm){
+            showAlert('los password no son iguales', 'alerta-error')
+            return;
+        }
+        saveUser({
+            email:'',
+            password:'',
+            name:'',
+            confirm:''
+        })
     }
     return (
         <div className="form-usuario">
+            {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div> ): null}
             <div className="contenedor-form sombra-dark">
                 <h1>Obtener Nueva Cuenta</h1>
                 <form onSubmit={onSubmit}>
@@ -33,9 +63,9 @@ const NewAccount = () => {
                         <input
                             type="text" 
                             id='nombre'
-                            name='nombre'
+                            name='name'
                             placeholder='nombre'
-                            value={nombre}
+                            value={name}
                             onChange={onChange}
                         />
                     </div>
@@ -66,9 +96,9 @@ const NewAccount = () => {
                         <input
                             type="password" 
                             id='confirmar'
-                            name='confirmar'
+                            name='confirm'
                             placeholder='Repite tu password'
-                            value={confirmar}
+                            value={confirm}
                             onChange={onChange}
                         />
                     </div>
@@ -86,4 +116,4 @@ const NewAccount = () => {
     )
 }
 
-export default NewAccount;
+export default NewAccount
