@@ -30,14 +30,20 @@ const AuthState = (props) =>{
         
         try {
             const answer = await clientAxios.post('/api/usuario', data);
-            console.log(answer);
+            console.log(answer.data);
             dispatch({
-                type: SUCCESSFUL_REGISTRARION
+                type: SUCCESSFUL_REGISTRARION,
+                payload: answer.data
             })
         } catch (error) {
-            console.log(error)
+            // console.log(error.response.data.msg)
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            }
             dispatch({
                 type: REGISTRATION_ERROR,
+                payload: alert
             })
         }
     }
