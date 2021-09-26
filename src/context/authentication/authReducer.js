@@ -10,11 +10,16 @@ import {
 export default (state, action) =>{
     switch (action.type) {
         case SUCCESSFUL_REGISTRARION:
-            localStorage.setItem('tokel', action.payload.token)
+            localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 authenticated: true,
                 message : null
+            }
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload.user
             }
         case LOGIN_ERROR:
         case REGISTRATION_ERROR :

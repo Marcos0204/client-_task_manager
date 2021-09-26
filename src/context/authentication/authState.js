@@ -2,6 +2,7 @@ import React, {useReducer} from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import clientAxios from '../../config/axios';
+import tokenAuth from '../../config/token';
 
 import { 
     SUCCESSFUL_REGISTRARION,
@@ -30,7 +31,7 @@ const AuthState = (props) =>{
         
         try {
             const answer = await clientAxios.post('/api/usuario', data);
-            console.log(answer.data);
+           // console.log(answer.data);
             dispatch({
                 type: SUCCESSFUL_REGISTRARION,
                 payload: answer.data
@@ -53,15 +54,22 @@ const AuthState = (props) =>{
     // authenticated user
     const authenticatedUser =async ()=>{
         const token = localStorage.getItem('token');
+        //console.log('este es')
+        //console.log(token)
         if(token){
-
+            tokenAuth(token)
         }
 
         try {
             const answer = await clientAxios.get('/api/auth');
-            console.log(answer)
+            //console.log(answer.data)
+            dispatch({
+                type:GET_USER,
+                payload: answer.data
+            })
         } catch (error) {
             console.log(error)
+            console.log(error.response)
             dispatch({
                 type:LOGIN_ERROR
             })
