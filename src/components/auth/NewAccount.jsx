@@ -1,10 +1,10 @@
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from "../../context/authentication/authContext";
 
-const NewAccount = () => {
+const NewAccount = (props) => {
     /// context aler
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
@@ -12,7 +12,18 @@ const NewAccount = () => {
 
     //context auth
     const authContext = useContext(AuthContext);
-    const { registerUser } = authContext;
+    const { message, authenticated, registerUser } = authContext;
+
+    /// 
+    useEffect(()=>{
+        if(authenticated){
+            props.history.push('/proyectos')
+        }
+        if(message){
+            showAlert(message.msg, message.category)
+        }
+
+    }, [message, authenticated,  props.history])
 
     const [user, saveUser] = useState({
         email:'',
