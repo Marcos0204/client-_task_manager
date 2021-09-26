@@ -35,6 +35,8 @@ const AuthState = (props) =>{
                 type: SUCCESSFUL_REGISTRARION,
                 payload: answer.data
             })
+            //obtener el usuario
+            authenticatedUser()
         } catch (error) {
             // console.log(error.response.data.msg)
             const alert = {
@@ -47,6 +49,24 @@ const AuthState = (props) =>{
             })
         }
     }
+
+    // authenticated user
+    const authenticatedUser =async ()=>{
+        const token = localStorage.getItem('token');
+        if(token){
+
+        }
+
+        try {
+            const answer = await clientAxios.get('/api/auth');
+            console.log(answer)
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type:LOGIN_ERROR
+            })
+        }
+    } 
     
 
     return (
