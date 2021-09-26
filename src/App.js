@@ -12,6 +12,7 @@ import AuthState from "./context/authentication/authState";
 
 
 function App() {
+  console.log(process.env.REACT_APP_BACKEN_URL)
   return (
     <ProjectState>
       <TaskState>
